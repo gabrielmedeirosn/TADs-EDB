@@ -1,16 +1,16 @@
 #include <iostream>
 #include "conjunto.h"
 
-Conjunto::Conjunto(){
+Conjunto::Conjunto() {
     tam = 0;
     tamMax = 100;
     dados = new int[tamMax];
 }
-Conjunto::~Conjunto(){
+Conjunto::~Conjunto() {
     delete[] dados;
 }
 
-bool Conjunto::contains(int elem) const {
+bool Conjunto::contains(int elem) const { //Verifica se o valor ja esta inserido
     for(int i = 0; i < tam; i++){
         if(dados[i] == elem){
             return true;
@@ -19,7 +19,7 @@ bool Conjunto::contains(int elem) const {
     return false;
 }
 
-void Conjunto::add(int elem){
+void Conjunto::add(int elem) { // adiciona elemento
     if(contains(elem)){ //nao adiciona repetido
         return;
     }
@@ -30,10 +30,10 @@ void Conjunto::add(int elem){
     tam++;
 }
 
-void Conjunto::remove(int elem){
-    for( int i = 0; i< tam; i++){
+void Conjunto::remove(int elem) { // remove elemento apos procurar em todo o conjuto.
+    for( int i = 0; i< tam; i++) {
         if(dados[i] == elem){
-            for (int j = 0; j < tam-1; j++){
+            for (int j = 0; j < tam-1; j++) {
                 dados[j] = dados[j+1];
             }
             tam--;
@@ -42,8 +42,7 @@ void Conjunto::remove(int elem){
     }
 }
 
-Conjunto Conjunto::unionSet(const Conjunto& B)
-{
+Conjunto Conjunto::unionSet(const Conjunto& B) { // uniao entre dois conjuntos
     Conjunto resultado;
 
     for(int i = 0; i< tam; i++){
@@ -56,6 +55,7 @@ Conjunto Conjunto::unionSet(const Conjunto& B)
     return resultado;
 }
 
+// intersection entre 2 conjuntos
 Conjunto Conjunto::intersection(const Conjunto& B) { //como o conjunto B nao eh alterado, passagem por referencia
     Conjunto resultado;
     for(int i = 0;i< tam;i++){
@@ -66,7 +66,7 @@ Conjunto Conjunto::intersection(const Conjunto& B) { //como o conjunto B nao eh 
     return resultado;
 }
 
-void Conjunto::print(){
+void Conjunto::print() {
     for (int i = 0; i < tam; i++){
         std::cout << dados[i] << " "; 
     }
